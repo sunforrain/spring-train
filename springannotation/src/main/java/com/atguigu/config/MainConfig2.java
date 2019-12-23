@@ -1,6 +1,8 @@
 package com.atguigu.config;
 
+import com.atguigu.bean.Color;
 import com.atguigu.bean.Person;
+import com.atguigu.bean.Red;
 import com.atguigu.condition.LinuxCondition;
 import com.atguigu.condition.WindowsCondition;
 import org.springframework.context.annotation.*;
@@ -8,7 +10,9 @@ import org.springframework.context.annotation.*;
 /**
  * 没有@ComponentScan过滤条件的配置类
  * @Conditional配在类上,类中组件统一设置,则需要满足这个条件,这个类中配置的所有bean注册才能生效
+ * 任务8 @Import导入组件,id默认是组件的全类名
  */
+@Import({Color.class,Red.class})
 @Conditional({WindowsCondition.class})
 @Configuration
 public class MainConfig2 {
@@ -73,4 +77,16 @@ public class MainConfig2 {
     public Person person02() {
         return new Person("linus", 48);
     }
+
+    /**
+     * 任务8：08、尚硅谷_Spring注解驱动开发_组件注册-@Import-给容器中快速导入一个组件
+     * 总结一下目前给容器中注册组件的方式:
+     * 1) 包扫描+组件标注注解(@Controller/@Service/@Repository/@Component)
+     *      这种可以用在我们自己写的类上,但是如果是导入的包里面的类呢?
+     * 2) @Bean[导入的第三方包里面的组件可以用这种方式,但是每次导入个第三方组件都要调构造器,似乎有些麻烦]
+     * 3) @Import[快速给容器中导入一个组件]
+     *      三种可传的参数:{@link Configuration}, {@link ImportSelector}, {@link ImportBeanDefinitionRegistrar}
+     *      1)) @Import(要导入到容器的组件):容器中就会自动注册这个组件,id默认是全类名
+     *      2)) @ImportSelecter:返回需要导入的组件的全类名数组
+     */
 }

@@ -14,6 +14,21 @@ public class IOCTest {
     AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfig2.class);
 
     /**
+     * 任务8：08、尚硅谷_Spring注解驱动开发_组件注册-@Import-给容器中快速导入一个组件
+     * 需要在配置类上加注解@Import
+     */
+    @Test
+    public void testImport () {
+        printBeans(applicationContext);
+    }
+    // 遍历查看IOC容器中所有的的bean的name
+    private void printBeans(AnnotationConfigApplicationContext applicationContext) {
+        String[] definitionNames = applicationContext.getBeanDefinitionNames();
+        for(String name: definitionNames){
+            System.out.println(name);
+        }
+    }
+    /**
      * 任务7：07、尚硅谷_Spring注解驱动开发_组件注册-@Conditional-按照条件注册bean
      */
     @Test
