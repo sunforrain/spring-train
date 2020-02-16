@@ -9,7 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class MainTest {
 
     /**
-     * 任务2 尚硅谷_Spring注解驱动开发_组件注册-@Configuration&@Bean给容器中注册组件
+     * 任务2 组件注册-@Configuration&@Bean给容器中注册组件
      * @param args
      */
     public static void main (String[] args) {
@@ -17,7 +17,7 @@ public class MainTest {
         // 获取到bean容器,需要获取到类路径下的配置文件
 //        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("beans.xml");
 //        Person bean = (Person)applicationContext.getBean("person");
-//        System.out.println(bean);
+////        System.out.println(bean);
 
         // 使用注解的方式获取到bean
         // 获取到bean容器,需要获取到配置类

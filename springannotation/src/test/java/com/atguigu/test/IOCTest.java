@@ -1,5 +1,6 @@
 package com.atguigu.test;
 
+import com.atguigu.bean.Blue;
 import com.atguigu.bean.Person;
 import com.atguigu.config.MainConfig;
 import com.atguigu.config.MainConfig2;
@@ -14,13 +15,34 @@ public class IOCTest {
     AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfig2.class);
 
     /**
-     * 任务8：08、尚硅谷_Spring注解驱动开发_组件注册-@Import-给容器中快速导入一个组件
+     * 任务8：组件注册-@Import-给容器中快速导入一个组件
      * 需要在配置类上加注解@Import
      */
     @Test
     public void testImport () {
         printBeans(applicationContext);
+        //任务9 @Import-使用ImportSelector, 配置类中引入实现类后,这里就能拿到bean
+        Blue bean = applicationContext.getBean(Blue.class);
+        System.out.println(bean);
+
+        // 视频11 组件注册-使用FactoryBean注册组件
+        //工厂Bean获取的是调用getObject创建的对象
+        Object bean2 = applicationContext.getBean("colorFactoryBean");
+        // FactoryBean如果设置非单例,这里会是两个对象
+        Object bean3 = applicationContext.getBean("colorFactoryBean");
+        System.out.println("bean的类型："+bean2.getClass());
+        System.out.println(bean2 == bean3);
+
+        // &开头可以获取到工厂Bean本身,原因?
+        /**
+         * interface BeanFactory 其中有如下参数,设置bean工厂本身的对象名为&开头
+         * String FACTORY_BEAN_PREFIX = "&";
+         */
+
+        Object bean4 = applicationContext.getBean("&colorFactoryBean");
+        System.out.println(bean4.getClass());
     }
+
     // 遍历查看IOC容器中所有的的bean的name
     private void printBeans(AnnotationConfigApplicationContext applicationContext) {
         String[] definitionNames = applicationContext.getBeanDefinitionNames();
@@ -29,7 +51,7 @@ public class IOCTest {
         }
     }
     /**
-     * 任务7：07、尚硅谷_Spring注解驱动开发_组件注册-@Conditional-按照条件注册bean
+     * 任务7：组件注册-@Conditional-按照条件注册bean
      */
     @Test
     public void test03 () {
@@ -49,7 +71,7 @@ public class IOCTest {
     }
 
     /**
-     * 任务5：05、尚硅谷_Spring注解驱动开发_组件注册-@Scope-设置组件作用域
+     * 任务5：组件注册-@Scope-设置组件作用域
      */
     @Test
     public void test02 () {
@@ -69,7 +91,7 @@ public class IOCTest {
 //        System.out.println(bean == bean2);
     }
     /**
-     * 任务3：03、尚硅谷_Spring注解驱动开发_组件注册-@ComponentScan-自动扫描组件&指定扫描规则
+     * 任务3：03、组件注册-@ComponentScan-自动扫描组件&指定扫描规则
      */
     @Test
     public void test01 () {
