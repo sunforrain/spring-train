@@ -1,5 +1,9 @@
 package com.atguigu.bean;
+
+import org.springframework.stereotype.Component;
+
 // 视频12 @Bean指定初始化和销毁方法
+@Component
 public class Car {
     // 构造器,创建bean会用
     public Car(){

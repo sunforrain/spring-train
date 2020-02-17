@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
  * bean的生命周期：
  * 		bean创建---初始化----销毁的过程
  * 容器管理bean的生命周期；
- * 我们可以自定义初始化和销毁方法；容器在bean进行到当前生命周期的时候来调用我们自定义的初始化和销毁方法
+ * 我们可以自定义初始化和销毁方法,bean创建没有提供控制；容器在bean进行到当前生命周期的时候来调用我们自定义的初始化和销毁方法
  *
  * 生命周期的先后执行顺序:
  * 构造（对象创建以及对象属性的赋值	）,没有提供方法控制
@@ -53,6 +53,10 @@ import org.springframework.context.annotation.Configuration;
  * 		在bean初始化前后进行一些处理工作；
  * 		postProcessBeforeInitialization:在初始化之前工作  视频15
  * 		postProcessAfterInitialization:在初始化之后工作   视频15
+ *
+ * Spring底层对 BeanPostProcessor 的使用； 视频17,见脑图
+ * 		bean赋值，注入其他组件，@Autowired，生命周期注解功能，@Async,xxx BeanPostProcessor;
+ *
  */
 @ComponentScan("com.atguigu.bean")
 @Configuration

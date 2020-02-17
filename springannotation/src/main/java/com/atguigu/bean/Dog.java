@@ -1,5 +1,8 @@
 package com.atguigu.bean;
 
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -7,7 +10,11 @@ import javax.annotation.PreDestroy;
 
 // 视频14 生命周期-@PostConstruct&@PreDestroy
 @Component
-public class Dog {
+public class Dog implements ApplicationContextAware {
+
+    // 视频17 生命周期-BeanPostProcessor在Spring底层的使用
+    private ApplicationContext applicationContext;
+
     public Dog(){
         System.out.println("dog constructor...");
     }
@@ -22,5 +29,10 @@ public class Dog {
     @PreDestroy
     public void detory(){
         System.out.println("Dog....@PreDestroy...");
+    }
+
+    // 视频17 生命周期-BeanPostProcessor在Spring底层的使用
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
     }
 }
