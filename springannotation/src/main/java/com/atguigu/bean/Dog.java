@@ -12,7 +12,7 @@ public class Dog {
         System.out.println("dog constructor...");
     }
 
-    //对象创建并赋值之后调用
+    //对象创建并赋值之后调用的初始化方法
     @PostConstruct
     public void init(){
         System.out.println("Dog....@PostConstruct...");

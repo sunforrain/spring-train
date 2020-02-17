@@ -15,7 +15,7 @@ import java.io.IOException;
  */
 public class MyTypeFilter implements TypeFilter {
     /**
-     * 任务4：组件注册-自定义TypeFilter指定过滤规则
+     * 视频4：组件注册-自定义TypeFilter指定过滤规则
      * @param metadataReader 读取到的当前正在扫描的类的信息
      * @param metadataReaderFactory 可以获取到其他任何类的信息
      * @return

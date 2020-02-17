@@ -9,7 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class MainTest {
 
     /**
-     * 任务2 组件注册-@Configuration&@Bean给容器中注册组件
+     * 视频2 组件注册-@Configuration&@Bean给容器中注册组件
      * @param args
      */
     public static void main (String[] args) {

@@ -8,7 +8,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.core.type.AnnotatedTypeMetadata;
 
 /**
- * 任务7 @Conditional  的判断条件类
+ * 视频7 @Conditional  的判断条件类
  * 判断是否linux系统
  */
 public class LinuxCondition implements Condition {

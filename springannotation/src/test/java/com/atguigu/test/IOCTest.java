@@ -11,17 +11,17 @@ import org.springframework.core.env.ConfigurableEnvironment;
 import java.util.Map;
 
 public class IOCTest {
-    // 任务7 因为经常获取容器,这里放在公共,生产不要这么做
+    // 视频7 因为经常获取容器,这里放在公共,生产不要这么做
     AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfig2.class);
 
     /**
-     * 任务8：组件注册-@Import-给容器中快速导入一个组件
+     * 视频8：组件注册-@Import-给容器中快速导入一个组件
      * 需要在配置类上加注解@Import
      */
     @Test
     public void testImport () {
         printBeans(applicationContext);
-        //任务9 @Import-使用ImportSelector, 配置类中引入实现类后,这里就能拿到bean
+        //视频9 @Import-使用ImportSelector, 配置类中引入实现类后,这里就能拿到bean
         Blue bean = applicationContext.getBean(Blue.class);
         System.out.println(bean);
 
@@ -51,7 +51,7 @@ public class IOCTest {
         }
     }
     /**
-     * 任务7：组件注册-@Conditional-按照条件注册bean
+     * 视频7：组件注册-@Conditional-按照条件注册bean
      */
     @Test
     public void test03 () {
@@ -71,7 +71,7 @@ public class IOCTest {
     }
 
     /**
-     * 任务5：组件注册-@Scope-设置组件作用域
+     * 视频5：组件注册-@Scope-设置组件作用域
      */
     @Test
     public void test02 () {
@@ -91,7 +91,7 @@ public class IOCTest {
 //        System.out.println(bean == bean2);
     }
     /**
-     * 任务3：03、组件注册-@ComponentScan-自动扫描组件&指定扫描规则
+     * 视频3：03、组件注册-@ComponentScan-自动扫描组件&指定扫描规则
      */
     @Test
     public void test01 () {
