@@ -58,7 +58,7 @@ public class MainConfig2 {
     }
 
     /**
-     * 视频7 @Conditional-按照条件注册bean
+     * 视频7 @Conditional-按照条件注册bean(重点,springBoot用的多)
      *  如果系统是windows.给容器中注册("bill")
      *
      * @Conditional需要传的参数是实现了Condition接口的实现类
@@ -85,7 +85,7 @@ public class MainConfig2 {
     }
 
     /**
-     * 给容器中注册组件；
+     * 给容器中注册组件(重点,springBoot用的多)；
      * 1）、包扫描+组件标注注解（@Controller/@Service/@Repository/@Component）[自己写的类]
      * 2）、@Bean[导入的第三方包里面的组件]
      * 3）、@Import[快速给容器中导入一个组件]

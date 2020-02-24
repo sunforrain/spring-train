@@ -37,7 +37,7 @@ import org.springframework.context.annotation.Primary;
  * 			没有能支持@Primary功能没有支持@Autowired（reqiured=false）;
  * 		@Inject:
  * 			需要导入javax.inject的包，和Autowired的功能一样。没有required=false的功能；
- *  @Autowired:Spring定义的； @Resource、@Inject都是java规范
+ *  @Autowired: Spring定义的； @Resource、@Inject都是java规范
  *
  * AutowiredAnnotationBeanPostProcessor:解析完成自动装配功能；
  *

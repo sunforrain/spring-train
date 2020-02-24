@@ -13,7 +13,7 @@ public class MyImportBeanDefinitionRegistrar implements ImportBeanDefinitionRegi
      * AnnotationMetadata：当前类的注解信息
      * BeanDefinitionRegistry:BeanDefinition注册类；
      * 		把所有需要添加到容器中的bean；调用
-     * 		BeanDefinitionRegistry.registerBeanDefinition手工注册进来
+     *      * 		BeanDefinitionRegistry.registerBeanDefinition手工注册进来
      */
     public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
         boolean defination = registry.containsBeanDefinition("com.atguigu.bean.Blue");
