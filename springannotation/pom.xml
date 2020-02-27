@@ -21,6 +21,13 @@
             <artifactId>spring-aspects</artifactId>
             <version>4.3.12.RELEASE</version>
         </dependency>
+        <!--视频36 声明式事务-环境搭建 AOP-AOP功能测试-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+<!--如果用hibernate可以用这个控制事务 <artifactId>spring-orm</artifactId>-->
+            <version>4.3.12.RELEASE</version>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
