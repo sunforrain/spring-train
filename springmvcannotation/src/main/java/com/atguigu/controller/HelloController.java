@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.atguigu.service.HelloService;
 
-// 视频57 springmvc-整合
+
 @Controller
 public class HelloController {
 
     @Autowired
     HelloService helloService;
 
-
+    // 视频57 springmvc-整合
     @ResponseBody
     @RequestMapping("/hello")
     public String hello(){
@@ -23,6 +23,7 @@ public class HelloController {
         return hello;
     }
 
+    // 视频58 springmvc-定制与接管SpringMVC
     //  /WEB-INF/views/success.jsp
     @RequestMapping("/suc")
     public String success(){

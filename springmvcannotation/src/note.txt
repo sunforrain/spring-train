@@ -9,6 +9,15 @@ https://docs.spring.io/spring/docs/5.0.2.RELEASE/spring-framework-reference/
 => 找spring MVC相关, Web on Servlet
 https://docs.spring.io/spring/docs/5.0.2.RELEASE/spring-framework-reference/web.html#spring-web
 => 找1.2. DispatcherServlet 部分,有注解版配置springMVC的起手式
+    继承AbstractAnnotationConfigDispatcherServletInitializer的子类的基本写法等
+
+springBoot的初始化顺序和这里springMVC的不同
+Spring Boot follows a different initialization sequence.
+Rather than hooking into the lifecycle of the Servlet container,
+Spring Boot uses Spring configuration to bootstrap itself and the embedded Servlet container.
+Filter and Servlet declarations are detected in Spring configuration and registered with the Servlet container.
+For more details check the Spring Boot docs.
+https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-embedded-container
 
 1、web容器在启动的时候，会扫描每个jar包下的META-INF/services/javax.servlet.ServletContainerInitializer
     参考Servlet3.0是JSR-315标准规范的说明
@@ -67,12 +76,21 @@ https://docs.spring.io/spring/docs/5.0.2.RELEASE/spring-framework-reference/web.
 实现抽象方法指定DispatcherServlet的配置信息；
 
 ===========================
+视频58 springmvc-定制与接管SpringMVC
 定制SpringMVC；
+可参考官方文档
+1.11. MVC Config 部分,怎么调都有
 1）、@EnableWebMvc:开启SpringMVC定制配置功能；
 	<mvc:annotation-driven/>；
 
 2）、配置组件（视图解析器、视图映射、静态资源映射、拦截器。。。）
 	extends WebMvcConfigurerAdapter
+	或者
+	implements WebMvcConfigurer
+	二者区别是
+	    WebMvcConfigurerAdapter已经以空方法形式实现了WebMvcConfigurer的各个方法,
+	        我们只需要单独针对需要的方法做单独重写即可,不用全部实现
+	    直接实现WebMvcConfigurer则需要将所有方法自己实现
 
 
 
