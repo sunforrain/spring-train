@@ -1,0 +1,80 @@
+视频56 servlet3.0-与SpringMVC整合分析
+官方说明的路径:
+https://spring.io/projects
+=> spring Framework
+=> 点击learn
+https://spring.io/projects/spring-framework#learn
+=> 找5.0.2版本的文档,最新的文档应该是没有了,需要打连接
+https://docs.spring.io/spring/docs/5.0.2.RELEASE/spring-framework-reference/
+=> 找spring MVC相关, Web on Servlet
+https://docs.spring.io/spring/docs/5.0.2.RELEASE/spring-framework-reference/web.html#spring-web
+=> 找1.2. DispatcherServlet 部分,有注解版配置springMVC的起手式
+
+1、web容器在启动的时候，会扫描每个jar包下的META-INF/services/javax.servlet.ServletContainerInitializer
+    参考Servlet3.0是JSR-315标准规范的说明
+    https://www.jcp.org/en/jsr/summary?id=servlet+3.0
+
+    springMVC要与servlet3.0整合,也需要有如上的文件,找lib中的spring-web包,进去找
+    org/springframework/spring-web/4.3.11.RELEASE/spring-web-4.3.11.RELEASE.jar
+    /META-INF/services/javax.servlet.ServletContainerInitializer
+
+===================以下是在SpringServletContainerInitializer的onStartup()方法中===================
+2、加载这个文件指定的类SpringServletContainerInitializer
+3、spring的应用一启动会加载感兴趣的WebApplicationInitializer接口的下的所有组件；
+    if (!waiClass.isInterface() && !Modifier.isAbstract(waiClass.getModifiers()) &&
+    						WebApplicationInitializer.class.isAssignableFrom(waiClass)) {
+    不是接口,不是抽象类,且是WebApplicationInitializer的实现类的组件
+
+4、并且为WebApplicationInitializer组件创建对象（组件不是接口，不是抽象类）
+    initializers.add((WebApplicationInitializer) waiClass.newInstance());
+        往initializers集合中添加感兴趣的WebApplicationInitializer接口的下的所有组件
+=============================================================================================
+
+    WebApplicationInitializer有如下三个子类
+	1）、AbstractContextLoaderInitializer：创建根容器；createRootApplicationContext()；
+	    org.springframework.web.context.AbstractContextLoaderInitializer.
+	    registerContextLoaderListener
+	    WebApplicationContext rootAppContext = createRootApplicationContext();
+	    然后创建了ContextLoaderListener,将跟容器rootAppContext添加到ContextLoaderListener中,
+	    然后将ContextLoaderListener添加到servletContext中
+	2）、AbstractDispatcherServletInitializer：
+	    org.springframework.web.servlet.support.AbstractDispatcherServletInitializer.
+	    registerDispatcherServlet
+			创建一个web的ioc容器；createServletApplicationContext();
+			创建了DispatcherServlet；createDispatcherServlet()；
+			将创建的DispatcherServlet添加到ServletContext中；
+			注册相关servlet的映射addMapping()
+			registration.addMapping(getServletMappings());
+			其中getServletMappings()留给我们来实现
+	3）、AbstractAnnotationConfigDispatcherServletInitializer：注解方式配置的DispatcherServlet初始化器
+	        继承树:
+	        AbstractAnnotationConfigDispatcherServletInitializer
+                AbstractDispatcherServletInitializer
+                    AbstractContextLoaderInitializer
+                        WebApplicationInitializer
+			创建根容器：createRootApplicationContext() 重写的父类的
+					getRootConfigClasses();传入一个配置类,抽象的,留给我们写
+					AnnotationConfigWebApplicationContext rootAppContext = new AnnotationConfigWebApplicationContext();
+					创建一个注解版的ioc根容器(负责处理server等业务的容器),然后后面把配置类加进去
+					rootAppContext.register(configClasses);
+			创建web的ioc容器： createServletApplicationContext(); 重写的父类的
+			        创建一个注解版的web的ioc容器(负责处理web相关业务的容器):
+			        AnnotationConfigWebApplicationContext servletAppContext = new AnnotationConfigWebApplicationContext();
+					获取配置类；getServletConfigClasses();抽象的,留给我们写
+
+总结：
+	以注解方式来启动SpringMVC；继承AbstractAnnotationConfigDispatcherServletInitializer；
+实现抽象方法指定DispatcherServlet的配置信息；
+
+===========================
+定制SpringMVC；
+1）、@EnableWebMvc:开启SpringMVC定制配置功能；
+	<mvc:annotation-driven/>；
+
+2）、配置组件（视图解析器、视图映射、静态资源映射、拦截器。。。）
+	extends WebMvcConfigurerAdapter
+
+
+
+			
+	
