@@ -8,14 +8,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-// 视频53 servlet3.0-简介&测试, 关于如何用idea创建没有web.xml的动态web项目见印象笔记
+
 // @WebServlet 替代以前在web.xml中注册页面路径
 @WebServlet("/hello")
 public class HelloServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
+        // 视频53 servlet3.0-简介&测试, 关于如何用idea创建没有web.xml的动态web项目见印象笔记
+//        resp.getWriter().write("hello...");
+        // 视频59 servlet3.0-异步请求 演示在没有异步请求前的样子
         System.out.println(Thread.currentThread()+" start...");
         try {
             sayHello();
@@ -26,6 +28,8 @@ public class HelloServlet extends HttpServlet {
         System.out.println(Thread.currentThread()+" end...");
     }
 
+    // 视频59 servlet3.0-异步请求 演示在没有异步请求前的样子,默认一个线程用了很久时间,
+    // 就会出现tomcat的线程池用光了,线程都堵塞外面请求进不来的情况
     public void sayHello() throws Exception{
         System.out.println(Thread.currentThread()+" processing...");
         Thread.sleep(3000);
