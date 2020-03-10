@@ -29,7 +29,10 @@ import org.springframework.context.annotation.Configuration;
  * 一但返回null，跳出for循环，不会执行后面的BeanPostProcessor.postProcessorsBeforeInitialization
  *
  * BeanPostProcessor原理
+ * org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory
+ *  #doCreateBean(java.lang.String, org.springframework.beans.factory.support.RootBeanDefinition, java.lang.Object[])
  * populateBean(beanName, mbd, instanceWrapper);给bean进行属性赋值
+ *
  * initializeBean
  * {
  * applyBeanPostProcessorsBeforeInitialization(wrappedBean, beanName);

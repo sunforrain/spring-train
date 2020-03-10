@@ -55,7 +55,7 @@ import org.springframework.context.annotation.Primary;
  * 		自定义组件实现xxxAware；在创建对象的时候，会调用接口规定的方法注入相关组件；
  *
  * 		把Spring底层一些组件注入到自定义的Bean中；
- * 		xxxAware：功能使用xxxProcessor；
+ * 		xxxAware：功能使用xxxProcessor由相关的xxxProcessor进行功能处理；
  * 			ApplicationContextAware==》ApplicationContextAwareProcessor；
  * 		    	                看里面实现的 postProcessBeforeInitialization方法,最终返回的IOC容器
  * 		    BeanNameAware ==> initializeBean:1615, AbstractAutowireCapableBeanFactory,

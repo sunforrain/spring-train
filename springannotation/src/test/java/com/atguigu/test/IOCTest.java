@@ -71,7 +71,7 @@ public class IOCTest {
     }
 
     /**
-     * 视频5：组件注册-@Scope-设置组件作用域
+     * 视频5 组件注册-@Scope-设置组件作用域
      */
     @Test
     public void test02 () {

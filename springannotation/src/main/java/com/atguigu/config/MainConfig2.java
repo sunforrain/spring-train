@@ -26,8 +26,8 @@ public class MainConfig2 {
     // 默认是单实例的
 
     /**
-     * 视频5：组件注册-@Scope-设置组件作用域
-     * @Scope有如下的几种值
+     * 视频5 组件注册-@Scope-设置组件作用域
+     * @Scope 有如下的几种值
      * ConfigurableBeanFactory#SCOPE_PROTOTYPE
      * 	ConfigurableBeanFactory#SCOPE_SINGLETON
      * 	org.springframework.web.context.WebApplicationContext#SCOPE_REQUEST
