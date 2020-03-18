@@ -148,7 +148,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  *       org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator
  *       #postProcessBeforeInstantiation(java.lang.Class, java.lang.String)
  *
- * 		关心MathCalculator和LogAspect的创建
+ * 		关于MathCalculator和LogAspect的创建
  * 		1）、判断当前bean是否在advisedBeans中（保存了所有需要增强bean）
  * 	            this.advisedBeans.containsKey(cacheKey)
  * 		2）、判断当前bean是否是基础类型的Advice、Pointcut、Advisor、AopInfrastructureBean，

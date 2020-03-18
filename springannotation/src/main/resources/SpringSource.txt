@@ -100,11 +100,11 @@ synchronized (this.startupShutdownMonitor) 包裹refresh内的流程,保证线�
         org.springframework.context.support.PostProcessorRegistrationDelegate.
         registerBeanPostProcessors(org.springframework.beans.factory.config.ConfigurableListableBeanFactory, org.springframework.context.support.AbstractApplicationContext)
 		不同接口类型的BeanPostProcessor；在Bean创建前后的执行时机是不一样的
-		BeanPostProcessor、
-		DestructionAwareBeanPostProcessor、
-		InstantiationAwareBeanPostProcessor、
-		SmartInstantiationAwareBeanPostProcessor、
-		MergedBeanDefinitionPostProcessor【internalPostProcessors】、
+		BeanPostProcessor(bean初始化相关,也是所有后置处理的父接口)、
+		DestructionAwareBeanPostProcessor(执行bean销毁的后置处理器)、
+		InstantiationAwareBeanPostProcessor(执行bean实例化的后置处理器)、
+		SmartInstantiationAwareBeanPostProcessor(InstantiationAwareBeanPostProcessorAdapter子接口)、
+		MergedBeanDefinitionPostProcessor【internalPostProcessors】(缓存创建好的bean实例)、
 
 		1）、获取所有的 BeanPostProcessor;
 		    分别放入四个集合中:
