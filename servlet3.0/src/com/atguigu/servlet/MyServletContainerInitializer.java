@@ -16,7 +16,7 @@ public class MyServletContainerInitializer implements ServletContainerInitialize
      * 应用启动的时候，会运行onStartup方法；
      *
      * Set<Class<?>> arg0：感兴趣的类型的所有子类型；
-     * ServletContext arg1:代表当前Web应用的ServletContext；一个Web应用一个ServletContext；
+     * ServletContext sc:代表当前Web应用的ServletContext；一个Web应用一个ServletContext；
      *
      * 1）、使用ServletContext注册Web组件（Servlet、Filter、Listener）
      * 2）、使用编码的方式，在项目启动的时候给ServletContext里面添加组件；

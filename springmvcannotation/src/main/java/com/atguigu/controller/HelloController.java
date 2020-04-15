@@ -24,7 +24,7 @@ public class HelloController {
     }
 
     // 视频58 springmvc-定制与接管SpringMVC
-    //  /WEB-INF/views/success.jsp
+    //  /WEB-INF/views/success.jsp.指向静态资源
     @RequestMapping("/suc")
     public String success(){
         return "success";

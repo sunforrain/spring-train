@@ -15,7 +15,7 @@ public class HelloServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // 视频53 servlet3.0-简介&测试, 关于如何用idea创建没有web.xml的动态web项目见印象笔记
+        // 视频53 servlet3.0-简介&测试, 关于如何用idea创建没有web.xml的动态web项目见印象笔记, 核心篇 4_9.springboot2.x之使用外置servlet容器原理解析
 //        resp.getWriter().write("hello...");
         // 视频59 servlet3.0-异步请求 演示在没有异步请求前的样子
         System.out.println(Thread.currentThread()+" start...");

@@ -27,6 +27,7 @@ public class AppConfig  extends WebMvcConfigurerAdapter  {
     public void configureViewResolvers(ViewResolverRegistry registry) {
         //默认所有的页面都从 /WEB-INF/ xxx .jsp
         //registry.jsp();
+        // 自定义找页面的路径
         registry.jsp("/WEB-INF/views/", ".jsp");
     }
 

@@ -25,10 +25,14 @@ https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-featu
 
     springMVC要与servlet3.0整合,也需要有如上的文件,找lib中的spring-web包,进去找
     org/springframework/spring-web/4.3.11.RELEASE/spring-web-4.3.11.RELEASE.jar
-    /META-INF/services/javax.servlet.ServletContainerInitializer
+    /META-INF/services/javax.servlet.ServletContainerInitializer,
+    里面指定的全类名是:
+    org.springframework.web.SpringServletContainerInitializer
 
 ===================以下是在SpringServletContainerInitializer的onStartup()方法中===================
 2、加载这个文件指定的类SpringServletContainerInitializer
+    @HandlesTypes(WebApplicationInitializer.class)
+    public class SpringServletContainerInitializer implements ServletContainerInitializer
 3、spring的应用一启动会加载感兴趣的WebApplicationInitializer接口的下的所有组件；
     if (!waiClass.isInterface() && !Modifier.isAbstract(waiClass.getModifiers()) &&
     						WebApplicationInitializer.class.isAssignableFrom(waiClass)) {
@@ -40,7 +44,7 @@ https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-featu
 =============================================================================================
 
     WebApplicationInitializer有如下三个子类
-	1）、AbstractContextLoaderInitializer：创建根容器；createRootApplicationContext()；
+	1）、AbstractContextLoaderInitializer：创建spring根容器；createRootApplicationContext()；相当于父容器
 	    org.springframework.web.context.AbstractContextLoaderInitializer.
 	    registerContextLoaderListener
 	    WebApplicationContext rootAppContext = createRootApplicationContext();
@@ -49,7 +53,7 @@ https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-featu
 	2）、AbstractDispatcherServletInitializer：
 	    org.springframework.web.servlet.support.AbstractDispatcherServletInitializer.
 	    registerDispatcherServlet
-			创建一个web的ioc容器；createServletApplicationContext();
+			创建一个web的ioc容器；createServletApplicationContext();只保存springMVC相关bean的子容器
 			创建了DispatcherServlet；createDispatcherServlet()；
 			将创建的DispatcherServlet添加到ServletContext中；
 			注册相关servlet的映射addMapping()
